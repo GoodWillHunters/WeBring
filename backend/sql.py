@@ -10,9 +10,9 @@ con = mysql.connector.connect(
 cursor = con.cursor()
 
 def initialize():
-    cursor.execute("DROP DATABASE IF EXISTS db;")
-    cursor.execute("CREATE DATABASE db")
-    cursor.execute("USE db")
+    cursor.execute("DROP DATABASE IF EXISTS db; ")
+    cursor.execute("CREATE DATABASE db; ")
+    cursor.execute("USE db; ")
 
     # vtrPhone, password, name, zip
     cursor.execute("CREATE TABLE volunteers (vtrPhone varchar(20) PRIMARY KEY, password varchar(255) NOT NULL, name varchar(255) NOT NULL, zip int(5) NOT NULL); ")
@@ -104,7 +104,7 @@ def delete_request (rqID):
 
 # get all requests
 def get_requests():
-    sql = "SELECT * FROM requests"
+    sql = "SELECT * FROM requests; "
     cursor.execute(sql)
     rqs = cursor.fetchall()
     con.commit()
@@ -112,15 +112,21 @@ def get_requests():
 
 # get all requesters
 def get_requesters():
-    sql = "SELECT * FROM requesters"
+    sql = "SELECT * FROM requesters; "
     cursor.execute(sql)
     rqstrs = cursor.fetchall()
     con.commit()
     return rqstrs
 
+def get_requester_zips():
+    sql = "SELECT zip from requesters; "
+    cursor.execute(sql)
+    zips = cursor.fetchall()
+    con.commit()
+    return zips
 # get all volunteers
 def get_volunteers():
-    sql = "SELECT * FROM volunteers"
+    sql = "SELECT * FROM volunteers; "
     cursor.execute(sql)
     vtrs = cursor.fetchall()
     con.commit()
@@ -128,7 +134,7 @@ def get_volunteers():
 
 # get volunteer username/pw
 def get_volunteer_user_pass():
-    sql = "SELECT vtrPhone, password FROM volunteers;"
+    sql = "SELECT vtrPhone, password FROM volunteers; "
     cursor.execute(sql)
     vtrs = cursor.fetchall()
     con.commit()
@@ -136,10 +142,10 @@ def get_volunteer_user_pass():
     return vtrs
 # delete table
 def delete(tableName):
-    sql = "TRUNCATE TABLE %s;"
+    sql = "TRUNCATE TABLE %s; "
     cursor.execute(sql % tableName)
 
 #initialize()
 
-cursor.execute("USE db")
+cursor.execute("USE db; ")
 get_volunteer_user_pass()
