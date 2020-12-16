@@ -4,7 +4,7 @@ con = mysql.connector.connect(
   host="localhost",
   port="3306",
   user="root",
-  password="", #CHANGE
+  password="Rycbar456", #CHANGE
   auth_plugin='mysql_native_password'
 )
 cursor = con.cursor()
@@ -15,13 +15,13 @@ def initialize():
     cursor.execute("USE db")
 
     # vtrPhone, password, name, zip
-    cursor.execute("CREATE TABLE volunteers (vtrPhone int(10) PRIMARY KEY, password varchar(255) NOT NULL, name varchar(255) NOT NULL, zip int(5) NOT NULL); ")
+    cursor.execute("CREATE TABLE volunteers (vtrPhone varchar(20) PRIMARY KEY, password varchar(255) NOT NULL, name varchar(255) NOT NULL, zip int(5) NOT NULL); ")
 
     # rqstrPhone, name, address, zip, rqDetails, dropDetails, addInfo, thankYou, assigned
-    cursor.execute("CREATE TABLE requesters (rqstrPhone int(10) PRIMARY KEY, name varchar(255) NOT NULL, address varchar(255) NOT NULL, zip int(5) NOT NULL, rqDetails varchar(1024) NOT NULL, dropDetails varchar(1024) NOT NULL, addInfo varchar(1024), thankYou varchar(1024), assigned boolean NOT NULL) ;")
+    cursor.execute("CREATE TABLE requesters (rqstrPhone varchar(20) PRIMARY KEY, name varchar(255) NOT NULL, address varchar(255) NOT NULL, zip int(5) NOT NULL, rqDetails varchar(1024) NOT NULL, dropDetails varchar(1024) NOT NULL, addInfo varchar(1024), thankYou varchar(1024), assigned boolean NOT NULL) ;")
 
     # reID, vtrPhone, rqstrPhone, zip, accepted, delivery_time
-    cursor.execute("CREATE TABLE requests (rqID int AUTO_INCREMENT PRIMARY KEY, vtrPhone int(10) NOT NULL, rqstrPhone int(10) NOT NULL, zip int(5) NOT NULL, accepted boolean NOT NULL, delivery_time varchar(256)); ")
+    cursor.execute("CREATE TABLE requests (rqID int AUTO_INCREMENT PRIMARY KEY, vtrPhone varchar(20) NOT NULL, rqstrPhone varchar(20) NOT NULL, zip int(5) NOT NULL, accepted boolean NOT NULL, delivery_time varchar(256)); ")
     con.commit()
 
 # register a volunteer
@@ -126,10 +126,20 @@ def get_volunteers():
     con.commit()
     return vtrs
 
+# get volunteer username/pw
+def get_volunteer_user_pass():
+    sql = "SELECT vtrPhone, password FROM volunteers;"
+    cursor.execute(sql)
+    vtrs = cursor.fetchall()
+    con.commit()
+    print (vtrs)
+    return vtrs
 # delete table
 def delete(tableName):
     sql = "TRUNCATE TABLE %s;"
     cursor.execute(sql % tableName)
 
-cursor.close()
-con.close()
+#initialize()
+
+cursor.execute("USE db")
+get_volunteer_user_pass()
