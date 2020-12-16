@@ -111,7 +111,7 @@ def get_requests():
     return rqs
 
 # get all requests
-def get_requests(rqPhone):
+def get_requester_info(rqPhone):
     sql = "SELECT * FROM requesters WHERE rqstrPhone = %s; "
     cursor.execute(sql % rqPhone)
     rqs = cursor.fetchall()
