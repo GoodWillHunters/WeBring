@@ -118,12 +118,12 @@ def get_requesters():
     con.commit()
     return rqstrs
 
-def get_requester_zips():
-    sql = "SELECT zip from requesters; "
+def get_requester_phones_and_zips():
+    sql = "SELECT rqstrPhone, zip from requesters; "
     cursor.execute(sql)
-    zips = cursor.fetchall()
+    info = cursor.fetchall()
     con.commit()
-    return zips
+    return info
 # get all volunteers
 def get_volunteers():
     sql = "SELECT * FROM volunteers; "
