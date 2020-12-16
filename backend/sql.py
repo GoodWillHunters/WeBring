@@ -110,6 +110,14 @@ def get_requests():
     con.commit()
     return rqs
 
+# get all requests
+def get_requests(rqPhone):
+    sql = "SELECT * FROM requesters WHERE rqstrPhone = %s; "
+    cursor.execute(sql % rqPhone)
+    rqs = cursor.fetchall()
+    con.commit()
+    return rqs
+
 # get all requesters
 def get_requesters():
     sql = "SELECT * FROM requesters; "
