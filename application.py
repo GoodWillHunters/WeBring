@@ -13,7 +13,7 @@ def index():
         users = SQ.get_volunteer_user_pass()
         tmp = False
         for user in users:
-            if (int (phone) == int (user[0]) and password == user[1]): 
+            if (phone == (user[0]) and password == user[1]): 
                 tmp = True
                 (phone, zipcode) = SQ.get_volunteer_zip(phone)
                 info = MC.match(phone, zipcode)
