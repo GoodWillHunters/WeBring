@@ -16,10 +16,8 @@ def index():
                 tmp = True
                 (phone, zipcode) = SQ.get_volunteer_zip(phone)
                 info = MC.match(phone, zipcode)
-                print(info)
                 for one in info:
                     SQ.assign_request(phone, one[0], zipcode, False)
-                print (SQ.get_requests_for_volunteer(phone))
                 return render_template("home.html", vtr=phone, info=SQ.get_requests_for_volunteer(phone))
         if tmp == False:
             return render_template('login.html', flag=True)
