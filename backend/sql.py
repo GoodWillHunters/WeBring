@@ -11,7 +11,7 @@ cursor = con.cursor(buffered=True)
 
 def initialize():
     cursor.execute("DROP DATABASE IF EXISTS db; ")
-    cursor.execute("CREATE DATABASE db; ")
+    cursor.execute("CREATE DATABASE db CHARACTER SET utf8 COLLATE utf8_general_ci; ")
     cursor.execute("USE db; ")
 
     # vtrPhone, password, name, zip
