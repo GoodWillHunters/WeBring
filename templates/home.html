@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block head %} Home {% endblock %}
+
+{% block body %}
+    <header>
+        <h1>Requests</h1>
+    </header>
+    <div id="content">
+        {% if info == [] %}
+            <div id="no_requests"> Sorry, there are no requests for you yet. </div>
+        {% else %}
+            <div id="table">
+                <table>
+                    <tr>
+                        <th>Phone</th>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Zip Code</th>
+                        <th>Details of Request</th>
+                        <th>Drop off details</th>
+                        <th>Additional comments</th>
+                        <th>Thank you note</th>
+                        <th>Status</th>
+                    </tr>
+                    {% for one in info %}
+                        <tr>
+                            <td>{{ one[0] }}</td>
+                            <td>{{ one[1] }}</td>
+                            <td>{{ one[2] }}</td>
+                            <td>{{ one[3] }}</td>
+                            <td>{{ one[4] }}</td>
+                            <td>{{ one[5] }}</td>
+                            <td>{{ one[6] }}</td>
+                            <td>{{ one[7] }}</td>
+                            {% if one[8] == False%}
+                                <td>
+                                    <a href="/accept/{{vtr}}/{{one[0]}}">Accept</a>
+                                    <br>
+                                    <a href="/decline/{{vtr}}/{{one[0]}}">Deny</a>
+                                </td>
+                            {% else %}
+                                <td>Accepted.</td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                </table>
+                <form action="/settings/{{vtr}}">
+                    <input type="submit" value="Settings" />
+                </form>
+
+                <form action="/">
+                    <input type="submit" value="Logout" />
+                </form>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
+

@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block head %} Accept Request {% endblock %}
+
+{% block body %}
+
+<form action="/accept/{{vtr}}/{{rqstr}}" method="POST">
+    <label for="time"><b>Estimated Delivery Time Bracket</b></label>
+    <input type="text" placeholder="provide a rough estimate" name="delivery" required>
+    <input type="submit" value="Submit">
+</form>
+
+{% endblock %}

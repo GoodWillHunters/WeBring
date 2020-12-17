@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <form action="/register" method="POST">
+    <label for="phone">Phone Number</label>
+    <input name="phone" type="text" placeholder="phone number" required>
+    <label for="password">Password</label>
+    <input name="password" type="password" placeholder="password" required>
+    <label for="name">Name</label>
+    <input name="name" type="text" placeholder="preferred name" required>
+    <label for="zipcode">Zipcode</label>
+    <input name="zipcode" type="text" placeholder="zipcode" required>
+    <p>Upload ID</p>
+      <input type="file" id="myFile" name="filename" required>
+    <input type="checkbox" name="terms_conditions" required>
+    <label for="terms_conditions" id="termsconditions">I agree to the <a href="/termsconditions">Terms and Conditions</a></label>
+    <input type="submit" value="Register">
+  </form>
+{% endblock %}

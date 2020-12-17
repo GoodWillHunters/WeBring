@@ -38,6 +38,25 @@ def add_requester (phone, name, address, zipC, rqDetails, dropDetails, addInfo, 
     cursor.execute(sql,val)
     con.commit()
 
+def update_vtr_zip (zipCode, vtrPhone):
+    sql = "UPDATE volunteers set zip = %s WHERE vtrPhone = %s; "
+    val = (zipCode, vtrPhone)
+    cursor.execute(sql, val)
+    sql = "UPDATE requesters SET assigned = False where rqstrPhone = (SELECT rqstrPhone FROM requests where vtrPhone = %s) ; "
+    cursor.execute(sql % vtrPhone)
+    sql = "DELETE FROM requests WHERE vtrPhone = %s; "
+    cursor.execute(sql % vtrPhone)
+
+def update_vtr_name (name, vtrPhone):
+    sql = "UPDATE volunteers set name = %s WHERE vtrPhone = %s; "
+    val = (name, vtrPhone)
+    cursor.execute(sql, val)
+
+def update_vtr_pw (password, vtrPhone):
+    sql = "UPDATE volunteers set password = %s WHERE vtrPhone = %s; "
+    val = (password, vtrPhone)
+    cursor.execute(sql, val)
+
 # assign a volunteer to a requester
 def assign_request (vtrPhone, rqstrPhone, zipC, accepted=False):
     sql = "INSERT INTO requests (vtrPhone, rqstrPhone, zip, accepted) VALUES (%s, %s, %s, %s); "
@@ -49,8 +68,8 @@ def assign_request (vtrPhone, rqstrPhone, zipC, accepted=False):
 
 # request is accepted by volunteer
 def accept_request (requestID, delivery_time):
-    sql = "UPDATE requests SET accepted = True WHERE (rqID = %s, delivery_time = %s)"
-    val = (requestID, delivery_time)
+    sql = "UPDATE requests SET accepted = True, delivery_time = %s WHERE rqID = %s"
+    val = (delivery_time, requestID)
     cursor.execute (sql, val)
     con.commit()
     
@@ -127,7 +146,7 @@ def get_requesters():
     return rqstrs
 
 def get_requester_phones_and_zips():
-    sql = "SELECT rqstrPhone, zip from requesters; "
+    sql = "SELECT rqstrPhone, zip from requesters WHERE assigned = 0; "
     cursor.execute(sql)
     info = cursor.fetchall()
     con.commit()
@@ -140,20 +159,35 @@ def get_volunteers():
     con.commit()
     return vtrs
 
+# get zip for volunteer phone
+def get_volunteer_zip(vtrPhone):
+    sql = "SELECT vtrPhone, zip FROM volunteers WHERE vtrPhone = %s; "
+    cursor.execute(sql % vtrPhone)
+    info = cursor.fetchone()
+    con.commit()
+    return info
+
+def get_req_id(vtrPhone, rqstrPhone):
+    sql = "SELECT rqID FROM requests WHERE vtrPhone = %s AND rqstrPhone = %s; "
+    val = (vtrPhone, rqstrPhone)
+    cursor.execute(sql, val)
+    info = cursor.fetchone()
+    con.commit()
+    return info
+
 # get volunteer username/pw
 def get_volunteer_user_pass():
     sql = "SELECT vtrPhone, password FROM volunteers; "
     cursor.execute(sql)
     vtrs = cursor.fetchall()
     con.commit()
-    print (vtrs)
     return vtrs
 # delete table
 def delete(tableName):
     sql = "TRUNCATE TABLE %s; "
     cursor.execute(sql % tableName)
 
-#initialize()
-
+# initialize()
 cursor.execute("USE db; ")
-get_volunteer_user_pass()
+# register_volunteer("1234", "abcd", "aly", "606")
+# add_requester("12345", "alex", "somewhere", "606", "some details", "more details", "info", "thanks")

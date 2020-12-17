@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <form action="/settings/{{vtr}}" method="POST">
+    <label for="phonenumber">Phone Number</label>
+    <input name="phonenumber" type="text" placeholder="{{vtr}}" readonly>
+    <label for="password">Password</label>
+    <input name="password" type="password" placeholder="change password">
+    <label for="name">Name</label>
+    <input name="name" type="text" placeholder="change name">
+    <label for="zipcode">Zipcode</label>
+    <input name="zipcode" type="text" placeholder="change zipcode">
+    <input type="submit" value="Update">
+  </form>
+{% endblock %}
