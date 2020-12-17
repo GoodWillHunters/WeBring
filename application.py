@@ -10,15 +10,17 @@ def index():
         phone = request.form['phone']
         password = request.form['password']
         users = SQ.get_volunteer_user_pass()
+        tmp = False
         for user in users:
             if (int (phone) == int (user[0]) and password == user[1]): 
+                tmp = True
                 (phone, zipcode) = SQ.get_volunteer_zip(phone)
                 info = MC.match(phone, zipcode)
                 for one in info:
                     SQ.assign_request(phone, one[0], zipcode, False)
                 return render_template("home.html", vtr=phone, info=SQ.get_requests_for_volunteer(phone))
-            else:
-                return render_template('login.html', flag=True)
+        if tmp == False:
+            return render_template('login.html', flag=True)
     else:
         return render_template('login.html', flag=False)
 
@@ -67,15 +69,20 @@ def settings(vtr):
         zipcode = request.form['zipcode']
         pw = request.form['password']
         name = request.form['name']
+        info = []
         if (zipcode != ""):
             SQ.update_vtr_zip(zipcode,vtr)
+            info = MC.match(vtr, zipcode)
         if (pw != ""):
             SQ.update_vtr_pw(pw, vtr)
         if (name != ""):
             SQ.update_vtr_name(name, vtr)
-        return render_template("home.html", vtr=vtr, info=SQ.get_requests_for_volunteer(vtr))
+        if info != []:
+            return render_template("home.html", vtr=vtr, info=info)
+        else:
+            return render_template("home.html", vtr=vtr, info=SQ.get_requests_for_volunteer(vtr))
     else:
         return render_template("settings.html", vtr=vtr, info=SQ.get_requests_for_volunteer(vtr))
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(use_reloader = True, debug=True)
