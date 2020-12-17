@@ -1,35 +1,40 @@
-body, html {
-    margin: 20;
-    font-family: sans-serif;
-}
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
+
+body {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 1rem;
+    background-color: rgb(206, 206, 206);
+    font-weight: 400;
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+
+  header {
+      background-color: rgb(0, 39, 34);
+      height: 80px;
+      margin-bottom: 50px;
+} 
 
 .content {
-    margin: 0 auto;
     width: 400px;
 }
 
-table, td, th {
-    border: 1px solid #aaa;
-}
-
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-th {
-    height: 30px;
-}
-
-td {
-    text-align: center;
-    padding: 5px;
-}
+img {
+    display: block;  
+    margin: auto;
+    padding: 10px;
+    width: 150px;
+  }
+  
 
 .form {
     margin-top: 20px;
 }
 
-#content {
-    width: 70%;
+button:hover
+{
+    background-color: rgba(0,136,169,0.5);
+    cursor:pointer;
 }
+
