@@ -2,24 +2,29 @@
 
 {% block head %} Login {% endblock %}
 
+
+{% block style %} 
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+{% endblock %}
 {% block body %}
 
 {% if flag == True %}
     <h4 style="text-align:center">Please enter valid credentials, or sign up.</h4>
 {% endif %}
 
-    <form action="/" method="POST">
-        <label for="phone"><b>Phone Number</b></label>
-        <input type="text" placeholder="Enter Phone Number" name="phone" required>
-
-        <label for="password"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="password" required>
-
-        <input type="submit" value="Login">
-
+    <form action="/" method="POST" class="form">
+        <label class="label" for="phone"><b>Phone Number</b></label>
+        <input class="input" type="text" placeholder="Enter Phone Number" name="phone" required>
+        <br>
+        <label class="label" for="password"><b>Password</b></label>
+        <input class="input" type="password" placeholder="Enter Password" name="password" required>
+        <br>
+        <input id="button1" type="submit" value="Login">
+        <br>
+        <br>
         <a href="/">Clear</a>
         <a href="/register">Sign Up</a>
-        <p></p>
+        <br>
     </form>
-    <p>If you wish to request a service please refer to <a href="/requesters">this page</a> for details.</p>
+    <p id="rq">If you wish to request a service please refer to <a href="/requesters">this page</a> for details.</p>
 {% endblock %}

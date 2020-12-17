@@ -4,6 +4,7 @@ import backend.sql as SQ
 import backend.matching as MC
 app = Flask(__name__)
 
+
 @app.route("/", methods=['POST', 'GET'])
 def index():
     if request.method == 'POST':
