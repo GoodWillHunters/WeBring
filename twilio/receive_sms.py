@@ -1,7 +1,10 @@
 import os
+import sys
+sys.path.append("/../")
+
 from flask import Flask, request, session
 from twilio.twiml.messaging_response import MessagingResponse
-#from backend.sql import add_requester
+from backend.sql import add_requester
 
 app = Flask(__name__)
 
@@ -30,30 +33,31 @@ def sms_reply():
     body = request.values.get('Body', None)
     # Start our TwiML response
     resp = MessagingResponse()
-    if body == 'hi':
-        messages = [] # clear up history
-        resp.message("Hi! Thanks for using grocery hunters. We are non-profit organization to help connect volunteer to you and help you buy grocery and stuff.\n can I have your name?")
-    elif len(messages) == 0:
-        messages.append(str(body))
-        body = "Hi! "+ str(body) + ", may I have your address? It will only be released to our verified volunteer"
-        resp.message(body)
-    elif len(messages) == 1:
-        messages.append(str(body))
-        resp.message("Got ya! And what is your Zip Code number?")
-    elif len(messages) == 2:
-        messages.append(str(body))
-        resp.message("Now you can write your request(items, amount of the items, and specific store with the location, estimate price etc)")
-    elif len(messages) == 3:
-        messages.append(str(body))
-        resp.message("Do you have any drop off details? (Like Front door, can knock on the door, entry requirements) You can answer No if there is no")
-    elif len(messages) == 4:
-        messages.append(str(body))
-        resp.message("Any thank you note for your the volunteer?")
-    elif len(messages) == 5:
-        messages.append(str(body))
-        resp.message("You are all set! you will be notified when a volunteer is matched! Stay safe!")
+    # if body == 'hi':
+    #     messages = [] # clear up history
+    #     resp.message("Hi! Thanks for using grocery hunters. We are non-profit organization to help connect volunteer to you and help you buy grocery and stuff.\n can I have your name?")
+    # elif len(messages) == 0:
+    #     messages.append(str(body))
+    #     body = "Hi! "+ str(body) + ", may I have your address? It will only be released to our verified volunteer"
+    #     resp.message(body)
+    # elif len(messages) == 1:
+    #     messages.append(str(body))
+    #     resp.message("Got ya! And what is your Zip Code number?")
+    # elif len(messages) == 2:
+    #     messages.append(str(body))
+    #     resp.message("Now you can write your request(items, amount of the items, and specific store with the location, estimate price etc)")
+    # elif len(messages) == 3:
+    #     messages.append(str(body))
+    #     resp.message("Do you have any drop off details? (Like Front door, can knock on the door, entry requirements) You can answer No if there is no")
+    # elif len(messages) == 4:
+    #     messages.append(str(body))
+    #     resp.message("Any thank you note for your the volunteer?")
+    # elif len(messages) == 5:
+    #     messages.append(str(body))
+    #     resp.message("You are all set! you will be notified when a volunteer is matched! Stay safe!")
 
-        add_requester("‭+85292632962‬", messages[0], messages[1], messages[2], messages[3], messages[4], messages[5])
+    #add_requester("‭+85292632962‬", messages[0], messages[1], messages[2], messages[3], messages[4], messages[5])
+    add_requester("‭+85292632962‬", "hey", "hi", 12345, "hi", "hey")
     session['message'] = messages
 
 
