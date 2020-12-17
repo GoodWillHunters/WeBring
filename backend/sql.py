@@ -4,14 +4,14 @@ con = mysql.connector.connect(
   host="localhost",
   port="3306",
   user="root",
-  password="Rycbar456", #CHANGE
+  password="", #TODO CHANGE
   auth_plugin='mysql_native_password'
 )
 cursor = con.cursor(buffered=True)
 
 def initialize():
     cursor.execute("DROP DATABASE IF EXISTS db; ")
-    cursor.execute("CREATE DATABASE db; ")
+    cursor.execute("CREATE DATABASE db CHARACTER SET utf8 COLLATE utf8_general_ci; ")
     cursor.execute("USE db; ")
 
     # vtrPhone, password, name, zip
