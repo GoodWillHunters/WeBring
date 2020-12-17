@@ -3,6 +3,7 @@ from flask import Flask, render_template, redirect, request
 import backend.sql as SQ
 import backend.matching as MC
 app = Flask(__name__)
+import backend.send_sms as SEND
 
 @app.route("/", methods=['POST', 'GET'])
 def index():
@@ -30,6 +31,9 @@ def accept(vtr,rqstr):
         (rqid,) = SQ.get_req_id(vtr,rqstr)
         timeperiod = request.form['delivery']
         SQ.accept_request(rqid, timeperiod)
+        rqstrName = SQ.get_req_name(rqstr)
+        vtrName = SQ.get_vtr_name(vtr)
+        SEND.send_msg_to_requester(rqstr, rqstrName, vtrName)
         return render_template("home.html", vtr=vtr, info=SQ.get_requests_for_volunteer(vtr))
     else:
         return render_template('accept.html', vtr=vtr, rqstr=rqstr)

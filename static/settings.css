@@ -1,0 +1,39 @@
+.label{
+    display: inline-block;
+    clear: left;
+    width: 250px;
+    padding-right: 10px;
+    text-align: right;
+}
+
+.input {
+    display: inline-block;
+    width: 30%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    text-align: center;
+    box-sizing: border-box;
+    border: 2px solid white;
+    border-bottom: 2px solid #d3d3d3;
+    border-radius: 10%;
+}
+
+#submit {
+    transition: all 0.3s ease 0s;
+    background-color: #003d02;
+    border: none;
+    color: white;
+    margin-left: 800px;
+    border-radius: 10%;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+
+ #submit:hover {
+    background-color: #dfffe0;
+    color: rgb(0, 44, 15);
+    cursor: pointer;
+  }

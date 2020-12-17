@@ -4,7 +4,7 @@ con = mysql.connector.connect(
   host="localhost",
   port="3306",
   user="root",
-  password="julie123!", #CHANGE
+  password="Rycbar456", #TODO CHANGE
   auth_plugin='mysql_native_password'
 )
 cursor = con.cursor(buffered=True)
@@ -64,6 +64,20 @@ def assign_request (vtrPhone, rqstrPhone, zipC, accepted=False):
     sql = "UPDATE requesters SET assigned = True WHERE rqstrPhone = %s; "
     cursor.execute(sql % rqstrPhone)
     con.commit()
+
+def get_req_name(rqstrPhone):
+    sql = "SELECT name FROM requesters WHERE rqstrPhone = %s"
+    cursor.execute(sql % rqstrPhone)
+    (name,) = cursor.fetchone()
+    con.commit()
+    return name
+
+def get_vtr_name(vtrPhone):
+    sql = "SELECT name FROM volunteers WHERE vtrPhone = %s"
+    cursor.execute(sql % vtrPhone)
+    (name,) = cursor.fetchone()
+    con.commit()
+    return name
 
 def get_req_phone (reqID):
     sql = "SELECT rqstrPhone from requests where rqID = %s; "
@@ -195,12 +209,13 @@ def delete(tableName):
     sql = "TRUNCATE TABLE %s; "
     cursor.execute(sql % tableName)
 
-# initialize()
+initialize()
 cursor.execute("USE db; ")
-# register_volunteer("1234", "abcd", "ben", "606")
-# register_volunteer("6616", "abcd", "aly", "606")
-# register_volunteer("8097", "abcd", "aly", "601")
-# add_requester("12345", "alex", "somewhere", "606", "some details", "more details", "info", "thanks")
-# add_requester("4142333", "vel", "somewhere else", "606", "diff details", "even more diff details", "something", "ty")
-# add_requester("1818255", "jack", "more places", "606", "diff details", "even more diff details", "something", "ty")
-# add_requester("60655", "hehe", "more places", "606", "diff details", "even more diff details", "something", "ty")
+register_volunteer("1234", "abcd", "ben", "606")
+register_volunteer("6616", "abcd", "aly", "606")
+register_volunteer("8097", "abcd", "aly", "601")
+add_requester("+85292632962", "schumacher", "germany", 12345, "buying a chipotle burrito with beef and cheese 10 dollars", "front door will be fine", "no", "thank you for kindly helping me!")
+add_requester("12345", "alex", "somewhere", "606", "some details", "more details", "info", "thanks")
+add_requester("4142333", "vel", "somewhere else", "606", "diff details", "even more diff details", "something", "ty")
+add_requester("1818255", "jack", "more places", "606", "diff details", "even more diff details", "something", "ty")
+add_requester("60655", "hehe", "more places", "606", "diff details", "even more diff details", "something", "ty")
