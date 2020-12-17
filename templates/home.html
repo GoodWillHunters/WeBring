@@ -33,11 +33,11 @@
                             <td>{{ one[5] }}</td>
                             <td>{{ one[6] }}</td>
                             <td>{{ one[7] }}</td>
-                            {% if one[8] == False%}
+                            {% if one[9] == 0%}
                                 <td>
                                     <a href="/accept/{{vtr}}/{{one[0]}}">Accept</a>
                                     <br>
-                                    <a href="/decline/{{vtr}}/{{one[0]}}">Deny</a>
+                                    <a href="/decline/{{vtr}}/{{one[0]}}">Decline</a>
                                 </td>
                             {% else %}
                                 <td>Accepted.</td>
@@ -45,6 +45,7 @@
                         </tr>
                     {% endfor %}
                 </table>
+        {% endif %}
                 <form action="/settings/{{vtr}}">
                     <input type="submit" value="Settings" />
                 </form>
@@ -53,7 +54,6 @@
                     <input type="submit" value="Logout" />
                 </form>
             </div>
-        {% endif %}
     </div>
 {% endblock %}
 
