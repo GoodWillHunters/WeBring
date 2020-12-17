@@ -6,7 +6,7 @@ def send_msg_to_requester(phone_number, requester_name, volunteer_name):
     # Your Account Sid and Auth Token from twilio.com/console
     # and set the environment variables. See http://twil.io/secure
     account_sid = 'ACc73e024efbe473a39cdab0937c11fc43'  #os.environ['TWILIO_ACCOUNT_SID']
-    auth_token = 'ea1cae1912e39fb08e198f6030b881d0' #os.environ['TWILIO_AUTH_TOKEN']
+    auth_token = 'e2d6f88e85be2006ef114670817ef8ed' #os.environ['TWILIO_AUTH_TOKEN']
     client = Client(account_sid, auth_token)
 
     message = client.messages \
@@ -15,6 +15,8 @@ def send_msg_to_requester(phone_number, requester_name, volunteer_name):
              from_='+18135484923',
              to=phone_number
          )
+    #print(message.id)
 
 
-print(message.sid)
+
+send_msg_to_requester("+14438596702‬", "julie ", "fiona ")
