@@ -2,16 +2,23 @@
 
 {% block head %} Settings {% endblock %}
 
+{% block style %} 
+    <link rel="stylesheet" href="{{ url_for('static', filename='settings.css') }}">
+{% endblock %}
+
+
 {% block body %}
   <form action="/settings/{{vtr}}" method="POST">
-    <label for="phonenumber">Phone Number</label>
-    <input name="phonenumber" type="text" placeholder="{{vtr}}" readonly>
-    <label for="password">Password</label>
-    <input name="password" type="password" placeholder="change password">
-    <label for="name">Name</label>
-    <input name="name" type="text" placeholder="change name">
-    <label for="zipcode">Zipcode</label>
-    <input name="zipcode" type="text" placeholder="change zipcode">
-    <input type="submit" value="Update">
+    <label class="label" for="phonenumber">Phone Number*</label>
+    <input class="input" name="phonenumber" type="text" placeholder="{{vtr}}" readonly>
+    <label class="label" for="password">Password</label>
+    <input class="input" name="password" type="password" placeholder="change password">
+    <label class="label" for="name">Name</label>
+    <input class="input" name="name" type="text" placeholder="change name">
+    <label class="label" for="zipcode">Zipcode</label>
+    <input class="input" name="zipcode" type="text" placeholder="change zipcode">
+    <br>
+    <br>
+    <input id="submit" type="submit" value="Update">
   </form>
 {% endblock %}

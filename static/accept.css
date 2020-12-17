@@ -1,46 +1,22 @@
-form {
-    text-align: center;
-    display: block;
-}
-  #tnc {
-    text-align: center;
-    display:block;
-    margin: auto;
-}
-
-  #checkbox {
-    text-align: center;
-    margin:auto;
-    display: block;
-}
 
 .label{
     display: inline-block;
     clear: left;
-    margin:auto;
-    width: 250px;
+    width: 400px;
     padding-right: 10px;
     text-align: right;
 }
 
 .input {
     display: inline-block;
-    width: 30%;
+    width: 50%;
     padding: 12px 20px;
-    margin: 8px auto;
+    margin: 8px 0;
     text-align: center;
     box-sizing: border-box;
     border: 2px solid white;
     border-bottom: 2px solid #d3d3d3;
     border-radius: 10%;
-}
-
-#upload {
-    width: 30%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    text-align: center;
-    box-sizing: border-box;
 }
 
 #submit {
@@ -57,12 +33,7 @@ form {
     font-size: 16px;
   }
 
- #submit:hover {
+  #submit:hover {
     background-color: #dfffe0;
     color: rgb(0, 44, 15);
-    cursor: pointer;
-  }
-
-  #checkbox:hover {
-    cursor: pointer;
   }

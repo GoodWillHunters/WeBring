@@ -3,7 +3,8 @@
 body {
     font-family: 'Work Sans', sans-serif;
     font-size: 1rem;
-    background-color: rgb(206, 206, 206);
+    background-color: rgb(196, 196, 196);
+    background-image: url(bg.png);
     font-weight: 400;
     line-height: 1.5;
     -webkit-text-size-adjust: 100%;
@@ -27,14 +28,10 @@ img {
     width: 150px;
   }
   
+ 
 
 .form {
     margin-top: 20px;
+    margin: auto;
+    text-align: center;
 }
-
-button:hover
-{
-    background-color: rgba(0,136,169,0.5);
-    cursor:pointer;
-}
-

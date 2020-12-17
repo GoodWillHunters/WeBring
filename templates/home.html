@@ -1,11 +1,14 @@
 {% extends "layout.html" %}
 
 {% block head %} Home {% endblock %}
+{% block style %} 
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+{% endblock %}
 
 {% block body %}
-    <header>
-        <h1>Requests</h1>
-    </header>
+        <h1 id="heading">Requests</h1>
+        <br>
+        <br>
     <div id="content">
         {% if info == [] %}
             <div id="no_requests"> Sorry, there are no requests for you yet. </div>
@@ -25,7 +28,7 @@
                     </tr>
                     {% for one in info %}
                         <tr>
-                            <td>{{ one[1] }}</td>
+                            <td id="name">{{ one[1] }}</td>
                             <td>{{ one[0] }}</td>
                             <td>{{ one[2] }}</td>
                             <td>{{ one[3] }}</td>
@@ -37,6 +40,7 @@
                                 <td>
                                     <a href="/accept/{{vtr}}/{{one[0]}}">Accept</a>
                                     <br>
+                                    <br>
                                     <a href="/decline/{{vtr}}/{{one[0]}}">Decline</a>
                                 </td>
                             {% else %}
@@ -46,12 +50,14 @@
                     {% endfor %}
                 </table>
         {% endif %}
+        <br>
+        <br>
                 <form action="/settings/{{vtr}}">
-                    <input type="submit" value="Settings" />
+                    <input class="sub" type="submit" value="Settings" />
                 </form>
 
                 <form action="/">
-                    <input type="submit" value="Logout" />
+                    <input class="sub" type="submit" value="Logout" />
                 </form>
             </div>
     </div>

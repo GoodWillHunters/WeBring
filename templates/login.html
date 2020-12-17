@@ -9,7 +9,7 @@
 {% block body %}
 
 {% if flag == True %}
-    <h4 style="text-align:center">Please enter valid credentials, or sign up.</h4>
+    <h4 id="error" style="text-align:center">Please enter valid credentials, or sign up.</h4>
 {% endif %}
 
     <form action="/" method="POST" class="form">
@@ -19,12 +19,17 @@
         <label class="label" for="password"><b>Password</b></label>
         <input class="input" type="password" placeholder="Enter Password" name="password" required>
         <br>
+        <br>
         <input id="button1" type="submit" value="Login">
         <br>
         <br>
-        <a href="/">Clear</a>
-        <a href="/register">Sign Up</a>
+        <a class="link" href="/">Clear</a>
+        <a class="link" href="/register">Sign up as a volunteer!</a>
         <br>
     </form>
+    <br>
+    <br>
+    <br>
+    <br>
     <p id="rq">If you wish to request a service please refer to <a href="/requesters">this page</a> for details.</p>
 {% endblock %}
