@@ -1,21 +1,32 @@
 {% extends 'layout.html' %}
 
 {% block head %} Register {% endblock %}
+{% block style %} 
+    <link rel="stylesheet" href="{{ url_for('static', filename='register.css') }}">
+{% endblock %}
 
 {% block body %}
   <form action="/register" method="POST">
-    <label for="phone">Phone Number</label>
-    <input name="phone" type="text" placeholder="phone number" required>
-    <label for="password">Password</label>
-    <input name="password" type="password" placeholder="password" required>
-    <label for="name">Name</label>
-    <input name="name" type="text" placeholder="preferred name" required>
-    <label for="zipcode">Zipcode</label>
-    <input name="zipcode" type="text" placeholder="zipcode" required>
-    <p>Upload ID</p>
-      <input type="file" id="myFile" name="filename" required>
-    <input type="checkbox" name="terms_conditions" required>
-    <label for="terms_conditions" id="termsconditions">I agree to the <a href="/termsconditions">Terms and Conditions</a></label>
-    <input type="submit" value="Register">
+    <label class="label" for="phone">Phone Number</label>
+    <input class="input" name="phone" type="text" placeholder="phone number" required>
+    <br>
+    <label class="label" for="password">Password</label>
+    <input class="input" name="password" type="password" placeholder="password" required>
+    <br>
+    <label class="label" for="name">Name</label>
+    <input class="input" name="name" type="text" placeholder="preferred name" required>
+    <br>
+    <label class="label" for="zipcode">Zipcode</label>
+    <input class="input" name="zipcode" type="text" placeholder="zipcode" required>
+    <br>
+    <label class="label" for="file">Upload ID</label>
+    <input id="upload" type="file" id="myFile" name="file" required>
+    <br>
+    <br>
+    <input id="checkbox" type="checkbox" name="terms_conditions" required>
+    <label id="tnc" for="terms_conditions" id="termsconditions">I agree to the <a href="/termsconditions">Terms and Conditions</a></label>
+    <br>
+    <br>
+    <input id="submit" type="submit" value="Register">
   </form>
 {% endblock %}

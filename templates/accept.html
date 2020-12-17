@@ -1,13 +1,17 @@
 {% extends "layout.html" %}
 
 {% block head %} Accept Request {% endblock %}
-
+{% block style %} 
+    <link rel="stylesheet" href="{{ url_for('static', filename='accept.css') }}">
+{% endblock %}
 {% block body %}
 
 <form action="/accept/{{vtr}}/{{rqstr}}" method="POST">
-    <label for="time"><b>Estimated Delivery Time Bracket</b></label>
-    <input type="text" placeholder="provide a rough estimate" name="delivery" required>
-    <input type="submit" value="Submit">
+    <label class="label" for="time"><b>Estimated Delivery Time Bracket</b></label>
+    <input class="input" type="text" placeholder="provide a rough estimate" name="delivery" required>
+    <br>
+    <br>
+    <input id="submit" type="submit" value="Submit">
 </form>
 
 {% endblock %}
