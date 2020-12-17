@@ -1,5 +1,7 @@
 {% extends 'layout.html' %}
 
+{% block head %} Settings {% endblock %}
+
 {% block body %}
   <form action="/settings/{{vtr}}" method="POST">
     <label for="phonenumber">Phone Number</label>
