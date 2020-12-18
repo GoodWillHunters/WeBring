@@ -35,7 +35,7 @@ def sms_reply():
     resp = MessagingResponse()
     if body == 'hi':
         messages = [] # clear up history
-        resp.message("Hi! Thanks for using Webring. We are non-profit organization to help connect volunteer to you and help you buy grocery and stuff.\n can I have your name?")
+        resp.message("Hi! Thanks for using WeBring. We are a non-profit organization to help connect volunteer to you and help you buy grocery and stuff.\n can I have your name?")
     elif len(messages) == 0:
         messages.append(str(body))
         body = "Hi! "+ str(body) + ", may I have your address? It will only be released to our verified volunteer"
@@ -45,7 +45,7 @@ def sms_reply():
         resp.message("Got ya! And what is your Zip Code number?")
     elif len(messages) == 2:
         messages.append(str(body))
-        resp.message("Now you can write your request(items, amount of the items, and specific store with the location, estimate price etc)")
+        resp.message("Now you can write your request(items, amount of the items, and specific store with the location, estimate price, etc)")
     elif len(messages) == 3:
         messages.append(str(body))
         resp.message("Do you have any drop off details? (Like Front door, can knock on the door, entry requirements) You can answer No if there is no")
@@ -58,12 +58,14 @@ def sms_reply():
     elif len(messages) == 6:
         messages.append(str(body))
         resp.message("You are all set! you will be notified when a volunteer is matched! Stay safe!")
-        add_requester("+14438596702", messages[0], messages[1], int(messages[2]), messages[3], messages[4], messages[5], messages[6])
+        add_requester("+14157358189", messages[0], messages[1], int(messages[2]), messages[3], messages[4], messages[5], messages[6])
         #add_requester(phone, name, address, zipC, rqDetails, dropDetails, addInfo, thankYou
 
     session['message'] = messages
     print(messages)
+    print()
     print(str(resp))
+    print()
 
     return str(resp)
 

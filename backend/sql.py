@@ -4,7 +4,7 @@ con = mysql.connector.connect(
   host="localhost",
   port="3306",
   user="root",
-  password="Rycbar456", #TODO CHANGE
+  password="julie123!", #TODO CHANGE
   auth_plugin='mysql_native_password'
 )
 cursor = con.cursor(buffered=True)
@@ -41,7 +41,7 @@ def update_vtr_zip (zipCode, vtrPhone):
     sql = "UPDATE volunteers SET zip = %s WHERE vtrPhone = %s; "
     val = (zipCode, vtrPhone)
     cursor.execute(sql, val)
-    sql = "UPDATE requesters SET assigned = False, accepted = False where rqstrPhone = (SELECT rqstrPhone FROM requests where vtrPhone = %s) ; "
+    sql = "UPDATE requesters SET assigned = False, accepted = False where rqstrPhone in (SELECT rqstrPhone FROM requests where vtrPhone = %s) ; "
     cursor.execute(sql % vtrPhone)
     sql = "DELETE FROM requests WHERE vtrPhone = %s; "
     cursor.execute(sql % vtrPhone)
@@ -209,13 +209,14 @@ def delete(tableName):
     sql = "TRUNCATE TABLE %s; "
     cursor.execute(sql % tableName)
 
-initialize()
+#
+# initialize()
 cursor.execute("USE db; ")
-register_volunteer("1234", "abcd", "ben", "606")
-register_volunteer("6616", "abcd", "aly", "606")
-register_volunteer("8097", "abcd", "aly", "601")
-add_requester("+85292632962", "schumacher", "germany", 12345, "buying a chipotle burrito with beef and cheese 10 dollars", "front door will be fine", "no", "thank you for kindly helping me!")
-add_requester("12345", "alex", "somewhere", "606", "some details", "more details", "info", "thanks")
-add_requester("4142333", "vel", "somewhere else", "606", "diff details", "even more diff details", "something", "ty")
-add_requester("1818255", "jack", "more places", "606", "diff details", "even more diff details", "something", "ty")
-add_requester("60655", "hehe", "more places", "606", "diff details", "even more diff details", "something", "ty")
+# #register_volunteer("+18582038211", "abcd", "Julie", "60637")
+# register_volunteer("+12223334444", "abcd", "Bhakti", "606")
+# add_requester("+13120221224", "Vernon", "5500 S University Avenue, Chicago, IL", 60637, "trader joe’s frozen pizza, $10", "front door", "no", "thank you for helping me!")
+# #add_requester("+13125238576", "Cole", "12100 S Cornell Ave, Chicago, IL", 60637, "milk, 4 cartons", "front door", "please ring the doorbell!", "thank you for being so kind and helping me out!")
+# add_requester("+18382776372", "Elizabeth", "3775 Bloomington Drive", 90027, "Broccoli about 2 pounds, milk 8 gallons, french bread, cheese", "no requirement", "no", "It's really generous of you")
+# add_requester("+18582721172", "Elif", "408 Mulholland Drive", 90027, "Beef 3 pounds, pork 2 pounds, and about a week of vegetable", "no", "no", "Thanks for your kindness")
+# add_requester("+13128443122", "Amy", "4200 S Dorchester Ave, Chicago, IL", 60637, "1kg apples", "please leave it on the doorstep", "no", "thank you for taking time out of your day to help me!")
+# add_requester("+13261728944", "Zhimin", "4779 N Cambridge Ave, Chicago", 60637, "buying a chipotle burrito with beef and cheese. It will be about 10 dollars", "entry access is not required", "no", "Thanks!")
