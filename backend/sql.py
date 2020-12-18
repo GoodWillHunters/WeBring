@@ -4,7 +4,7 @@ con = mysql.connector.connect(
   host="localhost",
   port="3306",
   user="root",
-  password="julie123!", #TODO CHANGE
+  password="", #TODO CHANGE
   auth_plugin='mysql_native_password'
 )
 cursor = con.cursor(buffered=True)
